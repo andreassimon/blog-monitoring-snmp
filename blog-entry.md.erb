@@ -26,9 +26,14 @@ So I wanted to query SNMP system data from this service.
 
 ## Capturing Data Regularly
 
-[<img src="https://raw.github.com/andreassimon/blog-performance-reporting-with-R/master/response-times.scaled.png" />](https://raw.github.com/andreassimon/blog-performance-reporting-with-R/master/response-times.png)
+<div class="code_block">
+<div class="code_header">/capture-snmp-regularly.sh</div>
+<%= `cat capture-snmp-regularly.sh | ./extract_region.rb all | grep --invert-match "region" | pygmentize -l bash -f html` %>
+</div>
 
 ## Plotting the Data
+
+[<img src="https://raw.github.com/andreassimon/blog-performance-reporting-with-R/master/response-times.scaled.png" />](https://raw.github.com/andreassimon/blog-performance-reporting-with-R/master/response-times.png)
 
 As always, the sources are available via [GitHub](https://github.com/andreassimon/blog-monitoring-snmp).
 
