@@ -1,2 +1,8 @@
+.RData
+.Rhistory
+
+jmeter.log
+*.csv
+
 *.snmpwalk
 *.html
