@@ -24,6 +24,8 @@ So I wanted to query SNMP system data from this service.
 <%= `cat capture-snmp.sh | ./extract_region.rb all | grep --invert-match "region" | pygmentize -l bash -f html` %>
 </div>
 
+A full walk is too expensive
+
 ## Capturing Data Regularly
 
 <div class="code_block">
