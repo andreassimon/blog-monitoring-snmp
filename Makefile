@@ -11,3 +11,6 @@ resize-screenshots:
 load-test:
 	rm response-times.csv
 	jmeter -n -t simple.jmx
+
+snmp-analysis:
+	R CMD BATCH snmp.R
