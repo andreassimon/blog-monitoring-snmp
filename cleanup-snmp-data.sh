@@ -12,4 +12,5 @@ cat $in | \
   sed "s/INTEGER: //" | \
   sed "s/STRING: //" | \
   sed "s/Counter32: //" | \
-  sed "s/\.0//"
+  sed "s/\.0//" | \
+  sed "s/ = /,/g"
