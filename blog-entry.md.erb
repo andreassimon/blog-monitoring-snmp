@@ -18,6 +18,10 @@ So I wanted to query SNMP system data from this service.
 <%= `cat install-packages.sh | ./extract_region.rb all | grep --invert-match "region" | pygmentize -l bash -f html` %>
 </div>
 
+## SNMP Concepts
+
+### MIBs
+
 ## Capturing Data
 <div class="code_block">
 <div class="code_header">/capture-snmp.sh</div>
@@ -33,9 +37,28 @@ A full walk is too expensive
 <%= `cat capture-snmp-regularly.sh | ./extract_region.rb all | grep --invert-match "region" | pygmentize -l bash -f html` %>
 </div>
 
+## Cleaning Up the Captured Data
+
+<div class="code_block">
+<div class="code_header">/cleanup-snmp-data.sh</div>
+<%= `cat cleanup-snmp-data.sh | grep --invert-match "region" | pygmentize -l bash -f html` %>
+</div>
+
+## Collecting the Data
+
+<div class="code_block">
+<div class="code_header">/collect-snmp-data.sh</div>
+<%= `cat collect-snmp-data.sh | grep --invert-match "region" | pygmentize -l bash -f html` %>
+</div>
+
 ## Plotting the Data
 
-[<img src="https://raw.github.com/andreassimon/blog-performance-reporting-with-R/master/response-times.scaled.png" />](https://raw.github.com/andreassimon/blog-performance-reporting-with-R/master/response-times.png)
+<div class="code_block">
+<div class="code_header">/snmp.R</div>
+<%= `cat snmp.R | grep --invert-match "region" | pygmentize -l r -f html` %>
+</div>
+
+[<img src="response-times-vs-snmp.scaled.png" />](response-times-vs-snmp.png)
 
 As always, the sources are available via [GitHub](https://github.com/andreassimon/blog-monitoring-snmp).
 

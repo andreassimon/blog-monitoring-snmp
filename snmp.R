@@ -10,6 +10,7 @@ snmps<-read.table("snmp.csv",
                   sep=","
 )
 
+png(width=1200, height=900, filename="response-times-vs-snmp.png")
 par(mfrow=c(2,1))
 
 colors <- c("dodgerblue3","tomato3","tomato4")
@@ -24,13 +25,18 @@ plot((responseTimes$timeStamp-min(responseTimes$timeStamp))/1000/60,
      pch=18
 )
 
-legend(0,2500,c("200", "503") ,col=c("dodgerblue3","tomato3"),yjust=0.5,pch=18)
+legend(0, 2500,
+       c("200", "503"),
+       col=c("dodgerblue3","tomato3"),
+       yjust=0.5,
+       pch=18
+)
 
 ssCpuUser<-snmps[ snmps$valueType == 'ssCpuUser', ]
 plot((ssCpuUser$timestamp-min(ssCpuUser$timestamp))/1000/60,
      ssCpuUser$value,
      type='o',
-     main="CPU, Memory Utilization",
+     main=expression(paste(ssCpuUser, ", ", 1-textstyle(frac(memAvailReal, memTotalReal)))),
      xlab="Test time [min]",
      ylab="Utilization [%]",
      ylim=c(0,100),
@@ -44,12 +50,16 @@ memAvailReal<-as.numeric(sub("([0-9]+) kB", "\\1", snmps[ snmps$valueType == 'me
 reservedMem<-1-memAvailReal/memTotalReal
 
 lines((timestamps-min(timestamps))/1000/60,
-     reservedMem*100,
-     type='o',
-     main="Reserved Memory over test time",
-     xlab="Test time [min]",
-     ylim=c(0,100),
-     col="orange",
-     pch=18
+      reservedMem*100,
+      type='o',
+      ylim=c(0,100),
+      col="orange",
+      pch=18
 )
-legend(0,20,c("CPU", "Memory") ,col=c("purple", "orange"),yjust=0.5,pch=18)
+legend(0, 20,
+       c("ssCpuUser", expression(1-textstyle(frac(memAvailReal, memTotalReal)))),
+       col=c("purple", "orange"),
+       yjust=0.5,
+       pch=18
+)
+dev.off()

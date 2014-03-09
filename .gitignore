@@ -1,5 +1,10 @@
 .RData
 .Rhistory
+*.Rout
+
+# R Studio
+*.Rproj
+.Rproj.user
 
 jmeter.log
 *.csv
