@@ -95,12 +95,19 @@ Executing `./collect-snmp-data > snmp.csv` produces a neat CSV file, ready for R
 
 ## Plotting the Data
 
+Finally, I plotted the data with R.
 <div class="code_block">
 <div class="code_header">/snmp.R</div>
-<%= `cat snmp.R | grep --invert-match "region" | pygmentize -l r -f html` %>
+<%= `cat snmp.R | ./extract_region.rb SNMP | grep --invert-match "region" | pygmentize -l r -f html` %>
 </div>
 
+Combined with the response times from JMeter, I got the following image:
+
 [<img src="response-times-vs-snmp.scaled.png" />](response-times-vs-snmp.png)
+
+The result does not suggest any relationships between these system parameters and the response times.
+But that just motivates further investigation. :-)
+So stay tuned!
 
 As always, the sources are available via [GitHub](https://github.com/andreassimon/blog-monitoring-snmp).
 
@@ -108,9 +115,8 @@ As always, the sources are available via [GitHub](https://github.com/andreassimo
 
  - [Net-SNMP](http://www.net-snmp.org/)
  - [SNMP on the German ubuntuusers Wiki](http://wiki.ubuntuusers.de/SNMP)
- - http://www.linux-mag.com/id/1080/
- - http://www.linux-mag.com/id/1054/
- - 
+ - [Monitoring Linux Hosts with SNMP](http://www.linux-mag.com/id/1080/)
+ - [Getting Started with SNMP](http://www.linux-mag.com/id/1054/)
 
 </body>
 </html>

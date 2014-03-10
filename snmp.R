@@ -3,12 +3,14 @@ responseTimes<-read.table("response-times.csv",
                           colClasses=c('numeric','integer','factor','factor','factor','factor','factor','logical','integer','integer'),
                           sep=","
 )
+# region SNMP
 snmps<-read.table("snmp.csv",
                   header=FALSE,
                   col.names=c('host','timestamp','valueType','value'),
                   colClasses=c('factor','numeric','factor','character'),
                   sep=","
 )
+# endregion SNMP
 
 png(width=1200, height=900, filename="response-times-vs-snmp.png")
 par(mfrow=c(2,1))
@@ -32,6 +34,7 @@ legend(0, 2500,
        pch=18
 )
 
+# region SNMP
 ssCpuUser<-snmps[ snmps$valueType == 'ssCpuUser', ]
 plot((ssCpuUser$timestamp-min(ssCpuUser$timestamp))/1000/60,
      ssCpuUser$value,
@@ -62,4 +65,5 @@ legend(0, 20,
        yjust=0.5,
        pch=18
 )
+# endregion SNMP
 dev.off()
