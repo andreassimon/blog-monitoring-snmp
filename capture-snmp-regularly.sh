@@ -1,7 +1,13 @@
 #!/bin/bash
 # region all
-interval=${1:-60}
-host="10.0.0.3"
+if [ $# -eq 0 ]; then
+  echo Usage: "./capture-snmp-regularly.sh <host> [<interval>]" >&2
+  exit 1
+fi
+
+host=$1
+interval=${2:-60}
+
 export MIBS=ALL
 while true; do
   timestamp=$(date +%s%N | cut -b1-13)
