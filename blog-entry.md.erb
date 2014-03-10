@@ -101,7 +101,7 @@ Finally, I plotted the data with R.
 <%= `cat snmp.R | ./extract_region.rb SNMP | grep --invert-match "region" | pygmentize -l r -f html` %>
 </div>
 
-Combined with the response times from JMeter, I got the following image:
+Combined with the [response times from JMeter](http://andreas-simon.blogspot.de/2014/03/analyzing-jmeter-results-with-r.html), I got the following image:
 
 [<img src="https://raw.github.com/andreassimon/blog-monitoring-snmp/master/response-times-vs-snmp.scaled.png" />](https://raw.github.com/andreassimon/blog-monitoring-snmp/master/response-times-vs-snmp.png)
 

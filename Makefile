@@ -1,4 +1,4 @@
-default: resize-screenshots html
+default: snmp-analysis resized-screenshots html
 
 html:
 	erubis blog-entry.md.erb | markdown > blog-entry.html
@@ -12,3 +12,6 @@ load-test:
 
 snmp-analysis:
 	R CMD BATCH snmp.R
+
+sample-data:
+	tar -xvf data.tar.gz
