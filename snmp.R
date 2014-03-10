@@ -36,7 +36,7 @@ ssCpuUser<-snmps[ snmps$valueType == 'ssCpuUser', ]
 plot((ssCpuUser$timestamp-min(ssCpuUser$timestamp))/1000/60,
      ssCpuUser$value,
      type='o',
-     main=expression(paste(ssCpuUser, ", ", 1-textstyle(frac(memAvailReal, memTotalReal)))),
+     main=expression(bold(paste(ssCpuUser, ", ", 1-textstyle(frac(memAvailReal, memTotalReal))))),
      xlab="Test time [min]",
      ylab="Utilization [%]",
      ylim=c(0,100),

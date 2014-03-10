@@ -64,26 +64,34 @@ In addition, there are categories of values that can be queried, e.g. `systemSta
 
 ## Capturing Data Regularly
 
+As a first step, I was fine with just capturing CPU and memory statistics.
+Selectively querying this information was quite valueable, because a full `snmpwalk` turned out to be too expensive and influenced the test results.
+I wrote a small script to record `systemStats` and `memory` every 60 seconds:
+
 <div class="code_block">
 <div class="code_header">/capture-snmp-regularly.sh</div>
-<%= `cat capture-snmp-regularly.sh | ./extract_region.rb all | grep --invert-match "region" | pygmentize -l bash -f html` %>
+<%= `cat capture-snmp-regularly.sh | ./extract_region.rb main | grep --invert-match "region" | pygmentize -l bash -f html` %>
 </div>
 
-A full walk is too expensive
+The results are organized hierarchical in directories by host and the timestamp.
 
-## Cleaning Up the Captured Data
+## Cleaning Up and Collecting the Captured Data
+
+To prepare the data for analysis with [R](http://r-project.org), I stripped out some uninteresting tokens:
 
 <div class="code_block">
 <div class="code_header">/cleanup-snmp-data.sh</div>
 <%= `cat cleanup-snmp-data.sh | grep --invert-match "region" | pygmentize -l bash -f html` %>
 </div>
 
-## Collecting the Data
+Afterwards I wrote a script to traverse the directories, read the `snmpwalk` data, clean it up and prepending the host name and timestamp.
 
 <div class="code_block">
 <div class="code_header">/collect-snmp-data.sh</div>
 <%= `cat collect-snmp-data.sh | grep --invert-match "region" | pygmentize -l bash -f html` %>
 </div>
+
+Executing `./collect-snmp-data > snmp.csv` produces a neat CSV file, ready for R.
 
 ## Plotting the Data
 
